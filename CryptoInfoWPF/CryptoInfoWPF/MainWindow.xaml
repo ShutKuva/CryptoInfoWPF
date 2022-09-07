@@ -6,7 +6,16 @@
         xmlns:local="clr-namespace:CryptoInfoWPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid Background="{DynamicResource BaseDarkBrush}">
+    <StackPanel Background="{DynamicResource BackColorBrush}">
+        <DockPanel LastChildFill="False">
+            <StackPanel
+                DockPanel.Dock="Right"
+                Orientation="Horizontal"
+                >
+                <RadioButton Style="{StaticResource HiddenSwitch}"></RadioButton>
+                <RadioButton Style="{StaticResource HiddenSwitch}"></RadioButton>
+            </StackPanel>
+        </DockPanel>
         <Frame></Frame>
-    </Grid>
+    </StackPanel>
 </Window>
