@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoInfoWPF", "CryptoInfoWPF\CryptoInfoWPF.csproj", "{BB565778-F66D-44F9-AD61-CDC7F604559E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BLL\BLL.csproj", "{9162E58A-2811-49FA-969A-1367FD2D45DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{477A6620-25C0-48DF-B5B2-6685C8719645}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB565778-F66D-44F9-AD61-CDC7F604559E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB565778-F66D-44F9-AD61-CDC7F604559E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB565778-F66D-44F9-AD61-CDC7F604559E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB565778-F66D-44F9-AD61-CDC7F604559E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9162E58A-2811-49FA-969A-1367FD2D45DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9162E58A-2811-49FA-969A-1367FD2D45DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9162E58A-2811-49FA-969A-1367FD2D45DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9162E58A-2811-49FA-969A-1367FD2D45DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{477A6620-25C0-48DF-B5B2-6685C8719645}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{477A6620-25C0-48DF-B5B2-6685C8719645}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{477A6620-25C0-48DF-B5B2-6685C8719645}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{477A6620-25C0-48DF-B5B2-6685C8719645}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {73BC0611-789B-45A5-9E7F-D95D526E28F6}
+	EndGlobalSection
+EndGlobal
