@@ -1,28 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BLL.Abstractions;
+using CryptoInfoWPF.Enums;
+using CryptoInfoWPF.ViewModels;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CryptoInfoWPF
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly NavigationManager _navigationManager;
+        private readonly MainWindowViewModel _viewModel;
+
+        public MainWindow(IGetAssetsService getAssetsService, MainWindowViewModel viewModel)
         {
             InitializeComponent();
+
+            _viewModel = viewModel;
+
+            DataContext = viewModel;
+
+            _navigationManager = new NavigationManager(MainFrame, getAssetsService);
+
+            _navigationManager.NavigateTo(PageEnum.Main);
         }
     }
 }

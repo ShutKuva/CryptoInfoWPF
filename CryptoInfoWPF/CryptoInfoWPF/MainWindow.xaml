@@ -5,17 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CryptoInfoWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        ResizeMode="CanMinimize">
     <StackPanel Background="{DynamicResource BackColorBrush}">
         <DockPanel LastChildFill="False">
             <StackPanel
                 DockPanel.Dock="Right"
                 Orientation="Horizontal"
+                Margin="10"
                 >
-                <RadioButton Style="{StaticResource HiddenSwitch}"></RadioButton>
-                <RadioButton Style="{StaticResource HiddenSwitch}"></RadioButton>
+                <RadioButton 
+                    Style="{StaticResource HiddenSwitch}"
+                    Margin="0 0 15 0" 
+                    FontFamily="{StaticResource MainFont}"
+                    Foreground="{DynamicResource BackTextColorBrush}"
+                    IsChecked="True"
+                    GroupName="Theme"
+                    CommandParameter="Light"
+                    Command="{Binding ThemeChanged}">
+                    Light
+                </RadioButton>
+                <RadioButton 
+                    Style="{StaticResource HiddenSwitch}"
+                    FontFamily="{StaticResource MainFont}"
+                    Foreground="{DynamicResource BackTextColorBrush}"
+                    GroupName="Theme"
+                    CommandParameter="Dark"
+                    Command="{Binding ThemeChanged}">
+                    Dark
+                </RadioButton>
             </StackPanel>
         </DockPanel>
-        <Frame></Frame>
+        <Border Margin="0 10 0 0" 
+               Padding="15"
+               HorizontalAlignment="Center" 
+               VerticalAlignment="Center"
+               Width="700" Height="320"
+               Background="{DynamicResource ListBackColorBrush}"
+               CornerRadius="10">
+            <ScrollViewer
+                HorizontalScrollBarVisibility="Hidden"
+                VerticalScrollBarVisibility="Auto">
+                <Frame Name="MainFrame"/>
+            </ScrollViewer>
+        </Border>
     </StackPanel>
 </Window>

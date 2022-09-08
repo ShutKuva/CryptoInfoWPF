@@ -1,12 +1,16 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <Style x:Key="Theme"/>
+    
     <Color x:Key="BackColor">#CEE7F3</Color>
     <Color x:Key="ListBackColor">#89C2E2</Color>
     <Color x:Key="EntityBackColor">#449DD1</Color>
+    <Color x:Key="BackTextColor">#0E0E52</Color>
 
     <SolidColorBrush Color="{StaticResource BackColor}" x:Key="BackColorBrush"/>
     <SolidColorBrush Color="{StaticResource ListBackColor}" x:Key="ListBackColorBrush"/>
     <SolidColorBrush Color="{StaticResource EntityBackColor}" x:Key="EntityBackColorBrush"/>
+    <SolidColorBrush Color="{StaticResource BackTextColor}" x:Key="BackTextColorBrush"/>
 
 </ResourceDictionary>

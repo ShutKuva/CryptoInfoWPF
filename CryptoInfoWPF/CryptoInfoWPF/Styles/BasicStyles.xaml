@@ -2,13 +2,25 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
     <Style x:Key="HiddenSwitch" TargetType="RadioButton">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BackTextColorBrush}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
-                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Border BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Padding="6"
+                            CornerRadius="8">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="BorderThickness" Value="1"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
     
 </ResourceDictionary>

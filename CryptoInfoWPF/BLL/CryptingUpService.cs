@@ -1,53 +1,71 @@
-﻿using Core;
+﻿using BLL.Abstractions;
+using Core;
+using Core.CryptingUp;
 using Newtonsoft.Json;
 
 namespace BLL
 {
-    public class CryptingUpService
+    public class CryptingUpService : IGetAssetsService
     {
         private readonly HttpClient _httpClient;
+        private readonly string _apiUrl = "https://cryptingup.com/api";
 
         public CryptingUpService()
         {
             _httpClient = new HttpClient()
             {
-                BaseAddress= new Uri("https://cryptingup.com/api/")
+                BaseAddress= new Uri(_apiUrl)
             };
         }
 
         public async Task<List<Asset>> GetAssets(string from)
         {
-            HttpResponseMessage response = await _httpClient.GetAsync(
-                GetUri(
-                    relativeUrl: "assets",
-                    queries: new Dictionary<string, string>
-                    {
-                        ["size"] = 10.ToString(),
-                        ["start"] = from
-                    }
-                )
-            );
-
-            if (!response.IsSuccessStatusCode)
+            try
             {
-                throw new InvalidOperationException(await response.Content.ReadAsStringAsync());
-            }
+                var queries = new Dictionary<string, string>
+                {
+                    ["size"] = 10.ToString()
+                };
 
-            return JsonConvert.DeserializeObject<List<Asset>>(await response.Content.ReadAsStringAsync());
+                if (int.Parse(from) != 0)
+                {
+                    queries["start"] = from;
+                }
+
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, GetUriWithQueries($"{_apiUrl}/assets", queries));
+
+                HttpResponseMessage response = await _httpClient.SendAsync(request);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new InvalidOperationException(await response.Content.ReadAsStringAsync());
+                }
+
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                return JsonConvert.DeserializeObject<AssetsResponse>(responseContent).Assets;
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public async Task<List<Market>> GetAssetsMarkets(string assetId, string from)
         {
-            HttpResponseMessage response = await _httpClient.GetAsync(
-                GetUri(
-                    relativeUrl: $"assets/{assetId}/markets",
-                    queries: new Dictionary<string, string>
-                        {
-                            ["size"] = 10.ToString(),
-                            ["start"] = from
-                        }
-                )
-            );
+            var queries = new Dictionary<string, string>
+            {
+                ["size"] = 10.ToString()
+            };
+
+            if(int.Parse(from) != 0)
+            {
+                queries["start"] = from;
+            }
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, GetUriWithQueries($"{_apiUrl}/assets/{assetId}/markets", queries));
+
+            HttpResponseMessage response = await _httpClient.SendAsync(request);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -57,9 +75,9 @@ namespace BLL
             return JsonConvert.DeserializeObject<List<Market>>(await response.Content.ReadAsStringAsync());
         }
 
-        private Uri GetUri(string relativeUrl, IDictionary<string, string> queries)
+        private Uri GetUriWithQueries(string absoluteUrl, IDictionary<string, string> queries)
         {
-            var uriBuilder = new UriBuilder(new Uri(relativeUrl, UriKind.Relative));
+            var uriBuilder = new UriBuilder(new Uri(absoluteUrl));
 
             uriBuilder.Query = QueryHandler.GetQueriesFromDictionary(queries);
 

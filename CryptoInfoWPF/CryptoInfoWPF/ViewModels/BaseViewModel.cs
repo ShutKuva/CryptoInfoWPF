@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 
-namespace CryptoInfoWPF.PageModels
+namespace CryptoInfoWPF.ViewModels
 {
-    public class BasePageModel : INotifyPropertyChanged
+    public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 

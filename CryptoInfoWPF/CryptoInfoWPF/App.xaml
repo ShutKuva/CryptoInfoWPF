@@ -1,12 +1,11 @@
 ﻿<Application x:Class="CryptoInfoWPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:CryptoInfoWPF"
-             StartupUri="MainWindow.xaml">
+             xmlns:local="clr-namespace:CryptoInfoWPF">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Styles/Themes/LightScheme.xaml"/>
+                <ResourceDictionary x:Name="Scheme" Source="pack://application:,,,/Styles/Themes/LightScheme.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Styles/BasicSettings.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/Styles/BasicStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
