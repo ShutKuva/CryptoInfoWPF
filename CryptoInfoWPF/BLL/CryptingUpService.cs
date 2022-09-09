@@ -18,7 +18,7 @@ namespace BLL
             };
         }
 
-        public async Task<List<Asset>> GetAssets(string from)
+        public async Task<AssetsResponse> GetAssets(string from)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace BLL
 
                 string responseContent = await response.Content.ReadAsStringAsync();
 
-                return JsonConvert.DeserializeObject<AssetsResponse>(responseContent).Assets;
+                return JsonConvert.DeserializeObject<AssetsResponse>(responseContent);
             }
             catch
             {
@@ -51,7 +51,7 @@ namespace BLL
             }
         }
 
-        public async Task<List<Market>> GetAssetsMarkets(string assetId, string from)
+        public async Task<MarketsResponse> GetAssetsMarkets(string assetId, string from)
         {
             var queries = new Dictionary<string, string>
             {
@@ -72,7 +72,7 @@ namespace BLL
                 throw new InvalidOperationException(await response.Content.ReadAsStringAsync());
             }
 
-            return JsonConvert.DeserializeObject<List<Market>>(await response.Content.ReadAsStringAsync());
+            return JsonConvert.DeserializeObject<MarketsResponse>(await response.Content.ReadAsStringAsync());
         }
 
         private Uri GetUriWithQueries(string absoluteUrl, IDictionary<string, string> queries)

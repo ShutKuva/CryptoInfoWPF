@@ -1,7 +1,9 @@
 ﻿using BLL.Abstractions;
+using Core;
 using CryptoInfoWPF.Enums;
 using CryptoInfoWPF.Pages;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace CryptoInfoWPF.ViewModels
 {
@@ -9,6 +11,8 @@ namespace CryptoInfoWPF.ViewModels
     {
         private readonly Frame _frame;
         private readonly IGetAssetsService _assetsService;
+
+        private object parameter;
 
         public NavigationManager(Frame frame, IGetAssetsService assetsService)
         {
@@ -20,10 +24,15 @@ namespace CryptoInfoWPF.ViewModels
         {
             switch (page)
             {
+                case PageEnum.Details:
+                    DetailsViewModel detailsViewModel = new DetailsViewModel(_assetsService, (Asset)parameter);
+                    detailsViewModel.BackEvent += () => NavigateTo(PageEnum.Main);
+                    _frame.Navigate(new DetailsPage(detailsViewModel));
+                    break;
                 case PageEnum.Main:
-                    if(_frame.Navigate(new MainPage(new MainViewModel(_assetsService)))){
-                        int i = 42;
-                    }
+                    MainViewModel viewModel = new MainViewModel(_assetsService);
+                    viewModel.OnAssetChoosed += (asset) => { parameter = asset; NavigateTo(PageEnum.Details); };
+                    _frame.Navigate(new MainPage(viewModel));
                     break;
             }
         }

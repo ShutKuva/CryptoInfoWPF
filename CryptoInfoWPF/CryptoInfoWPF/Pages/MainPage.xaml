@@ -15,37 +15,67 @@
         <converter:DecimalToColorConverter x:Key="DecimalToColor"/>
     </Page.Resources>
 
-    <StackPanel>
-        <ListBox ItemsSource="{Binding ListOfCourencies, UpdateSourceTrigger=PropertyChanged}" Background="Transparent"
-             SelectionChanged="ListBox_SelectionChanged"
-             SelectionMode="Single"
-             Visibility="{Binding IsLoading, UpdateSourceTrigger=PropertyChanged}"
-             BorderThickness="0"
-             Foreground="{StaticResource BaseLightBrush}"
-             HorizontalContentAlignment="Stretch">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Border Padding="20 15"
-                            Background="{DynamicResource EntityBackColorBrush}"
-                            CornerRadius="10">
-                        <DockPanel LastChildFill="False">
-                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
-                                <TextBlock Text="{Binding Path=Name}" Margin="0 0 10 0"/>
-                                <TextBlock Text="{Binding Path=Price, Converter={StaticResource DecimalToString}}"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
-                                <TextBlock Text="{Binding Path=Changed7D, Converter={StaticResource DecimalToString}}"
-                                       Foreground="{Binding Path=Changed7D, Converter={StaticResource DecimalToColor}}"
-                                       Margin="0 0 15 0"
-                                       VerticalAlignment="Center"/>
-                                <Image Source="{Binding Path=Changed7D, Converter={StaticResource DecimalToImage}}"
-                                       Height="15"
-                                       VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </DockPanel>
-                    </Border>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-    </StackPanel>
+    <DockPanel>
+        <Button Margin="0 0 10 0" DockPanel.Dock="Left"
+                Command="{Binding PrevCommand}">
+            <Image Source="../Images/Arrow.png" Height="30"/>
+        </Button>
+        <Button Margin="10 0 0 0" DockPanel.Dock="Right"
+                Command="{Binding NextCommand}">
+            <Image Height="30">
+                <Image.Source>
+                    <TransformedBitmap Source="../Images/Arrow.png">
+                        <TransformedBitmap.Transform>
+                            <RotateTransform Angle="180" />
+                        </TransformedBitmap.Transform>
+                    </TransformedBitmap>
+                </Image.Source>
+            </Image>
+        </Button>
+        <ScrollViewer
+                HorizontalScrollBarVisibility="Disabled"
+                VerticalScrollBarVisibility="Auto"
+                Height="Auto">
+            <StackPanel VerticalAlignment="Center" Height="Auto">
+                <TextBlock 
+                    Foreground="{StaticResource BaseLightBrush}"
+                    HorizontalAlignment="Center"
+                    Visibility="{Binding IsLoadingReverted, UpdateSourceTrigger=PropertyChanged}">
+                    Loading...
+                </TextBlock>
+                <ListBox ItemsSource="{Binding ListOfCourencies, UpdateSourceTrigger=PropertyChanged}" Background="Transparent"
+                    SelectionChanged="ListBox_SelectionChanged"
+                    SelectionMode="Single"
+                    Visibility="{Binding IsLoading, UpdateSourceTrigger=PropertyChanged}"
+                    BorderThickness="0"
+                    Foreground="{StaticResource BaseLightBrush}"
+                    HorizontalContentAlignment="Stretch">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Padding="20 15"
+                        Background="{DynamicResource EntityBackColorBrush}"
+                        CornerRadius="10">
+                                <DockPanel LastChildFill="False">
+                                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                                        <TextBlock Text="{Binding Path=Name}" Margin="0 0 10 0"/>
+                                        <TextBlock Text="{Binding Path=Price, Converter={StaticResource DecimalToString}}" Margin="0 0 5 0"/>
+                                        <TextBlock>USD</TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                                        <TextBlock Text="{Binding Path=Changed7D, Converter={StaticResource DecimalToString}}"
+                                    Foreground="{Binding Path=Changed7D, Converter={StaticResource DecimalToColor}}"
+                                    Margin="0 0 15 0"
+                                    VerticalAlignment="Center"/>
+                                        <Image Source="{Binding Path=Changed7D, Converter={StaticResource DecimalToImage}}"
+                                    Height="15"
+                                    VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </DockPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
 </Page>

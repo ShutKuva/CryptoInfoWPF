@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace BLL
+namespace Core
 {
     public class Market
     {

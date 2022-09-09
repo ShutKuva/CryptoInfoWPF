@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Arrow.png" />
     <None Remove="Images\Decrease.png" />
     <None Remove="Images\Increase.png" />
   </ItemGroup>
@@ -22,6 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\Arrow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\Decrease.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

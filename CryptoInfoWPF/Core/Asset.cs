@@ -13,6 +13,9 @@ namespace Core
 
         public decimal Price { get; set; }
 
+        [JsonProperty("volume_24h")]
+        public decimal Volume24 { get; set; }
+
         [JsonProperty("change_7d")]
         public decimal Changed7D { get; set; }
     }

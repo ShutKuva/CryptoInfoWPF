@@ -1,10 +1,10 @@
-﻿using Core;
+﻿using Core.CryptingUp;
 
 namespace BLL.Abstractions
 {
     public interface IGetAssetsService
     {
-        public Task<List<Asset>> GetAssets(string from);
-        public Task<List<Market>> GetAssetsMarkets(string assetId, string from);
+        public Task<AssetsResponse> GetAssets(string from);
+        public Task<MarketsResponse> GetAssetsMarkets(string assetId, string from);
     }
 }

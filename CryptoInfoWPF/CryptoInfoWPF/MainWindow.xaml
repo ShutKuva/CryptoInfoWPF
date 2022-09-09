@@ -43,11 +43,7 @@
                Width="700" Height="320"
                Background="{DynamicResource ListBackColorBrush}"
                CornerRadius="10">
-            <ScrollViewer
-                HorizontalScrollBarVisibility="Hidden"
-                VerticalScrollBarVisibility="Auto">
-                <Frame Name="MainFrame"/>
-            </ScrollViewer>
+            <Frame Name="MainFrame" NavigationUIVisibility="Hidden"/>
         </Border>
     </StackPanel>
 </Window>
